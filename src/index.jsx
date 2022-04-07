@@ -7,31 +7,28 @@ import Results from './pages/Results/index'
 import Freelances from './pages/Freelances/index'
 import Header from './components/Header/index'
 import Error from './components/Error/index'
-import { createGlobalStyle } from 'styled-components'
-
-
-const GlobalStyle = createGlobalStyle`
-    * {
-      font-family: 'Trebuchet MS', Helvetica, sans-serif;
-    }
-    body {
-      margin: 0;
-    }
-`
+import Footer from './components/Footer'
+import { ThemeProvider, SurveyProvider } from './utils/context'
+import GlobalStyle from './utils/style/GlobalStyle'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      <GlobalStyle />
-      <Header />
-      <Routes>
-        <Route exact path='/' element={<Home />} />
-        <Route path='/survey/:questionNumber' element={<Survey />} />
-        <Route path='/results' element={<Results />} />
-        <Route path='/freelances' element={<Freelances />} />
-        <Route element={<Error />} />
-      </Routes>
-    </Router>
+    <ThemeProvider>
+      <SurveyProvider>
+        <Router>
+          <GlobalStyle />
+          <Header />
+          <Routes>
+            <Route exact path='/' element={<Home />} />
+            <Route path='/survey/:questionNumber' element={<Survey />} />
+            <Route path='/results' element={<Results />} />
+            <Route path='/freelances' element={<Freelances />} />
+            <Route element={<Error />} />
+          </Routes>
+          <Footer />
+        </Router>
+      </SurveyProvider>
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 )
