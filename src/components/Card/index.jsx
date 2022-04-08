@@ -2,12 +2,13 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import colors from '../../utils/style/colors'
 import DefaultPicture from '../../assets/profile.png'
+import { useTheme } from '../../utils/hooks'
 
 const CardLabel = styled.span`
   color: #5843e4;
   font-size: 22px;
   font-weight: normal;
-  padding-left: 15px;
+  text-align: center;
 `
 
 const CardTitle = styled.span`
@@ -41,13 +42,13 @@ const CardWrapper = styled.div`
 `
 function Card({ name, job, picture }) {
 
-  
+  const { theme } = useTheme()
 
   return (
-    <CardWrapper>
-      <CardLabel>{job}</CardLabel>
+    <CardWrapper theme={theme}>
+      <CardLabel theme={theme}>{job}</CardLabel>
       <CardImage src={picture} alt='freelance' />
-      <span>{name}</span>
+      <CardTitle theme={theme}>{name}</CardTitle>
     </CardWrapper>
   )
 }
