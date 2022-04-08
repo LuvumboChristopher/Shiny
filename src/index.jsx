@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom/client'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Home from './pages/Home/index'
 import Survey from './pages/Survey/index'
@@ -11,7 +11,9 @@ import Footer from './components/Footer'
 import { ThemeProvider, SurveyProvider } from './utils/context'
 import GlobalStyle from './utils/style/GlobalStyle'
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById('root'))
+
+root.render(
   <React.StrictMode>
     <ThemeProvider>
       <SurveyProvider>
@@ -29,6 +31,5 @@ ReactDOM.render(
         </Router>
       </SurveyProvider>
     </ThemeProvider>
-  </React.StrictMode>,
-  document.getElementById('root')
+  </React.StrictMode>
 )
